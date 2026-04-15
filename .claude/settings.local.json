@@ -16,7 +16,8 @@
       "Bash(gh auth:*)",
       "Bash(gh api:*)",
       "Bash(git push:*)",
-      "Bash(python3 /Users/daniel/Desktop/figma-builder/.claude/protect-figma-refs.py)"
+      "Bash(python3 /Users/daniel/Desktop/figma-builder/.claude/protect-figma-refs.py)",
+      "mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__use_figma"
     ]
   },
   "hooks": {
