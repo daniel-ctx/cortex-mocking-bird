@@ -37,19 +37,34 @@ use o Project ID correspondente na tabela de ofertas acima.
 
 ---
 
-## ARQUIVOS DE TRABALHO (leitura e escrita)
+## ARQUIVO DE TRABALHO (leitura e escrita)
 
-Cada oferta tem seu próprio arquivo de rascunhos. Nunca crie conteúdo no projeto errado.
+O destino de cada criação é determinado por demanda — não existe um arquivo fixo por oferta.
 
-| Oferta | Arquivo | Variável de ambiente |
-|---|---|---|
-| Geofusion | `[GEO] Screen Builder — Rascunhos` | `FIGMA_GEO_WORKING_FILE_ID` |
-| Growth | `[GRO] Screen Builder — Rascunhos` | `FIGMA_GRO_WORKING_FILE_ID` |
-| Brand | `[BRA] Screen Builder — Rascunhos` | `FIGMA_BRA_WORKING_FILE_ID` |
-| Reach | `[REA] Screen Builder — Rascunhos` | `FIGMA_REA_WORKING_FILE_ID` |
-| Outros | `[OUT] Screen Builder — Rascunhos` | `FIGMA_OUT_WORKING_FILE_ID` |
+### Regra de decisão (em ordem de prioridade)
 
-Estrutura de páginas esperada dentro de cada arquivo:
+1. **Usuário especifica arquivo pelo nome** → busque no projeto da oferta e use esse arquivo
+   - Ex: `"adiciona ao arquivo Filtros de Camada"` → encontre e adicione uma nova página
+2. **Usuário especifica file ID** → use diretamente
+   - Ex: `"usa o arquivo x7q0fUseWU..."` → use esse ID
+3. **Usuário pede arquivo novo explicitamente** → crie com a convenção abaixo
+   - Ex: `"cria um arquivo novo para isso"`
+4. **Nenhuma instrução sobre arquivo** → crie um novo arquivo automaticamente
+
+### Convenção de nome para arquivos novos
+```
+[SIGLA] Nome da Demanda — Mês/Ano
+```
+Exemplos:
+```
+[GEO] Filtros de Camada — Abr/2026
+[GRO] Tela de Prospecção — Mai/2026
+[BRA] Comparativo de Mídia OOH — Mai/2026
+```
+
+O arquivo é criado dentro do projeto da oferta correspondente (usando o Project ID da tabela de ofertas).
+
+### Estrutura de páginas dentro do arquivo
 ```
 📄 Exploração — [nome da demanda] — [data]
 📄 Exploração — [nome da demanda] — [data]

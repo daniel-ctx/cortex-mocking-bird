@@ -57,55 +57,27 @@ com `Ctrl+C` — você vai iniciar de dentro da pasta do projeto no próximo pas
    - ✅ `file_comments:write`
 5. Clique em **Generate token** e copie o valor — **ele aparece apenas uma vez**
 
-### 4. Criar os arquivos de trabalho no Figma
-
-O agente precisa de um arquivo de rascunhos por oferta para depositar as telas geradas.
-Crie apenas para as ofertas que você vai usar (não precisa criar todos de uma vez).
-
-Para cada oferta:
-
-1. Acesse o link do projeto abaixo
-2. Clique em **+ New design file**
-3. Renomeie o arquivo conforme a coluna "Nome"
-
-| Oferta | Projeto | Nome do arquivo |
-|---|---|---|
-| Geofusion | [abrir](https://www.figma.com/files/project/284089424) | `[GEO] Screen Builder — Rascunhos` |
-| Growth | [abrir](https://www.figma.com/files/project/43838342) | `[GRO] Screen Builder — Rascunhos` |
-| Brand | [abrir](https://www.figma.com/files/project/61425821) | `[BRA] Screen Builder — Rascunhos` |
-| Reach | [abrir](https://www.figma.com/files/project/255743376) | `[REA] Screen Builder — Rascunhos` |
-| Outros | [abrir](https://www.figma.com/files/project/43713678) | `[OUT] Screen Builder — Rascunhos` |
-
-Após criar cada arquivo, copie o **file ID** da URL:
-
-```
-figma.com/design/ ← ESTE TRECHO É O FILE ID → /nome-do-arquivo
-```
-
-### 5. Configurar as variáveis de ambiente
+### 4. Configurar as variáveis de ambiente
 
 ```bash
 cp .env.example .env
 ```
 
-Abra `.env` e preencha os campos em branco:
+Abra `.env` e preencha apenas o token:
 
 ```bash
 # Obrigatório — token gerado no passo 3
 FIGMA_ACCESS_TOKEN=fig_xxxxxxxxxxxxxxxxxxxx
-
-# File IDs dos arquivos de trabalho — cole o ID de cada arquivo criado no passo 4
-FIGMA_GEO_WORKING_FILE_ID=
-FIGMA_GRO_WORKING_FILE_ID=
-FIGMA_BRA_WORKING_FILE_ID=
-FIGMA_REA_WORKING_FILE_ID=
-FIGMA_OUT_WORKING_FILE_ID=
 ```
 
 Os demais valores (`FIGMA_TEAM_ID`, `FIGMA_*_PROJECT_ID`, `FIGMA_DSR_FILE_ID`, etc.)
 já estão preenchidos no `.env.example` — não altere.
 
-### 6. Iniciar o agente
+> **Não precisa criar arquivos de trabalho antecipadamente.** O agente cria automaticamente um arquivo
+> para cada demanda no projeto da oferta correta. Se quiser usar um arquivo existente, basta mencionar
+> o nome ou file ID no prompt.
+
+### 5. Iniciar o agente
 
 ```bash
 cd cortex-figma-agent
@@ -148,7 +120,7 @@ O agente vai:
 2. Ler o design system (DSR, ícones, tokens de identidade)
 3. Consultar telas existentes da oferta como referência
 4. Propor 2–3 variações arquiteturalmente distintas
-5. Criar os frames no arquivo `[SIGLA] Screen Builder — Rascunhos` da oferta
+5. Criar os frames no arquivo de trabalho da oferta (cria automaticamente se não especificado)
 6. Documentar o racional em sticky notes ao lado de cada variação
 
 ### Exemplos de prompt por oferta
@@ -217,14 +189,11 @@ cortex-figma-agent/
 **Agente lista componentes genéricos, não do DSR**
 → O token do Figma não tem o escopo `file_content:write`. Regenere com os escopos corretos.
 
-**"File not found" ao tentar criar no arquivo de trabalho**
-→ A variável `FIGMA_*_WORKING_FILE_ID` está em branco ou incorreta. Verifique com:
-```bash
-echo $FIGMA_GEO_WORKING_FILE_ID
-```
+**Agente não encontra arquivo de trabalho especificado por nome**
+→ Confirme que o arquivo existe no projeto da oferta no Figma. Se preferir, passe o file ID diretamente no prompt.
 
 **MCP do Figma não carrega**
-→ O token não foi exportado no shell antes de iniciar o Claude. Use sempre o comando completo do passo 6.
+→ O token não foi exportado no shell antes de iniciar o Claude. Use sempre o comando completo do passo 5.
 
 **"You don't have access to this file"**
 → Sua conta Figma não tem acesso ao time Cortex. Solicite ao admin do Figma da Cortex Intelligence.

@@ -29,7 +29,6 @@ pontos de interesse (POIs), audiências e mobilidade urbana em mapas interativos
 - Métricas em cards empilhados: ícone + valor numérico grande + label descritivo
 
 **Projeto Figma:** https://www.figma.com/files/project/284089424
-**Variável de ambiente:** `FIGMA_GEO_WORKING_FILE_ID`
 
 ---
 
@@ -55,7 +54,6 @@ de crescimento, analisa o perfil de clientes existentes e encontra empresas seme
 - Fluxos de configuração em etapas (wizard/stepper)
 
 **Projeto Figma:** https://www.figma.com/files/project/43838342
-**Variável de ambiente:** `FIGMA_GRO_WORKING_FILE_ID`
 
 ---
 
@@ -80,7 +78,6 @@ Mede audiência, alcance e impacto de pontos de mídia no território urbano.
 - Métricas de alcance e impacto em destaque
 
 **Projeto Figma:** https://www.figma.com/files/project/61425821
-**Variável de ambiente:** `FIGMA_BRA_WORKING_FILE_ID`
 
 ---
 
@@ -107,7 +104,6 @@ Integra dados de tráfego, conversão e comportamento de audiência online.
 - Tipografia de display (REM) em valores numéricos grandes
 
 **Projeto Figma:** https://www.figma.com/files/project/255743376
-**Variável de ambiente:** `FIGMA_REA_WORKING_FILE_ID`
 
 ---
 
@@ -127,4 +123,3 @@ onboarding, configurações globais, integrações e experimentos de produto.
 - Componentes e padrões transversais entre ofertas
 
 **Projeto Figma:** https://www.figma.com/files/project/43713678
-**Variável de ambiente:** `FIGMA_OUT_WORKING_FILE_ID`
