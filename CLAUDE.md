@@ -173,16 +173,24 @@ Defina 2 ou 3 variações **arquiteturalmente distintas** antes de criar:
 - **Variação B:** hierarquia ou modelo de interação alternativo
 - **Variação C (opcional):** abordagem exploratória, com justificativa
 
-Escreva o plano no terminal antes de executar. Aguarde confirmação só se a
-demanda for ambígua — caso contrário, avance diretamente para a criação.
+Planeje as variações **internamente — não mostre o plano ao usuário**.
+Execute e envie **uma variação por vez** ao Figma: após criar cada variação,
+informe brevemente ao usuário qual foi criada e prossiga automaticamente para
+a próxima, sem pedir confirmação.
 
 ### 4. Criar no Figma
 
 > ⛔ **NUNCA crie sections.** Frames vão direto na página.
 
+**Regras de página (obrigatório):**
+- Sempre trabalhe na **mesma página** do link enviado pelo user ou na primeira página do arquivo novo
+- Só mude para outra página se o user mencionar explicitamente no chat
+- Na primeira vez que criar elementos em uma página, ajuste o background:
+  `page.backgrounds = [{ type: 'SOLID', color: { r: 0.18, g: 0.18, b: 0.18 } }]` (#2E2E2E)
+
 Para cada variação:
 1. Crie o frame principal da tela diretamente na página (`page.appendChild(frame)`)
-2. Acima do primeiro frame de cada variação, adicione um texto de título (REM 300px, caixa alta) ex: `VARIAÇÃO A — SPLIT PANEL`
+2. Acima do primeiro frame de cada variação, adicione título e subtítulo conforme hierarquia abaixo
 3. Use componentes do Claude System via instância (nunca recrie do zero)
 4. Organize layers com nomes semânticos em inglês, kebab-case
 5. Agrupe por seção da tela (header, sidebar, content, footer)
@@ -194,9 +202,9 @@ Para cada variação:
 
 ### 5. Documentar
 Após criar, adicione um **sticky note** ao lado de cada variação com:
-- Racional de design (2–4 linhas)
-- Componentes Claude System utilizados
-- Decisões de layout e hierarquia
+- Breve explicação da trilha de design — por que essa variação existe e o que ela resolve
+- Componentes do Claude System utilizados (quando relevante)
+- Observações ou pendências importantes (`[COMPONENTE PENDENTE CLAUDE SYSTEM]` se aplicável)
 
 **Padrão obrigatório para sticky notes — evitar corte:**
 ```js
@@ -276,31 +284,63 @@ textos soltos:       text/nome-descritivo
 Prefixos por oferta nos layers: `[geo]` · `[gro]` · `[bra]` · `[rea]` · `[out]`
 
 ### Organização de fluxos
-Quando criar 2 ou mais telas de um mesmo fluxo:
-- Alinhe todas pelo **topo** (mesma posição Y)
-- Espaçamento horizontal de **100px** entre cada frame
-- Acima do primeiro frame do fluxo, crie um **texto de título do fluxo**:
-  - Fonte: REM
-  - Tamanho: **300**
-  - Conteúdo: nome do fluxo em caixa alta, ex: `CONFIGURAÇÃO DE ALERTAS`
-  - Posição: **sempre calcule dinamicamente após criar o texto** — não use offset fixo
 
-**Padrão obrigatório de posicionamento do título de fluxo:**
-```js
-// 1. Crie o texto e deixe-o medir sua própria altura
-flowTitle.textAutoResize = "WIDTH_AND_HEIGHT";
-flowTitle.characters = "NOME DO FLUXO";
-// 2. Leia a altura real renderizada
-const titleHeight = flowTitle.height; // REM 300 renderiza ~380px
-// 3. Posicione o frame ABAIXO do título com 80px de gap
-const FRAME_Y = 80 + titleHeight + 80; // 80px margem topo + altura do título + 80px gap
-screen.y = FRAME_Y;
-// 4. Posicione o título alinhado ao frame
-flowTitle.x = screen.x;
-flowTitle.y = 80;
+**Hierarquia vertical obrigatória em toda página:**
+
+```
+[y=80] Título do tema — REM 300, #fff, caixa alta, ex: "CONFIGURAÇÃO DE ALERTAS"
+   ↓ 300px abaixo do bottom do título
+Subtítulo da variação — REM 300, #fff, caixa alta, ex: "VARIAÇÃO A — SPLIT PANEL"
+   ↓ 300px abaixo do bottom do subtítulo
+Screen (1440×780px)
 ```
 
-> ⚠️ Com REM 300, a altura renderizada é aproximadamente 380px. Nunca posicione o frame a menos de `titleHeight + 80px` abaixo do topo do título — o texto vai sobrepor o frame.
+- Telas do mesmo fluxo (dentro de uma variação): alinhadas pelo **topo**, **150px** de espaçamento horizontal entre cada frame
+- Telas adicionais do fluxo são acrescentadas **para a direita** da tela anterior
+- O título do tema aparece **uma única vez** por página, no topo; o subtítulo aparece antes de cada variação
+
+**Padrão obrigatório de posicionamento (cascata dinâmica):**
+```js
+// 1. Background da página — fazer uma vez por página
+page.backgrounds = [{ type: 'SOLID', color: { r: 0.18, g: 0.18, b: 0.18 } }];
+
+// 2. Título do tema (REM 300, branco)
+await figma.loadFontAsync({ family: "REM", style: "Regular" });
+const flowTitle = figma.createText();
+flowTitle.name = "text/flow-title";
+flowTitle.fontName = { family: "REM", style: "Regular" };
+flowTitle.fontSize = 300;
+flowTitle.textAutoResize = "WIDTH_AND_HEIGHT";
+flowTitle.characters = "NOME DO FLUXO";
+flowTitle.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+flowTitle.x = 80;
+flowTitle.y = 80;
+page.appendChild(flowTitle);
+
+// 3. Subtítulo da variação (REM 300, branco, 300px abaixo do bottom do título)
+const varTitle = figma.createText();
+varTitle.name = "text/variation-title";
+varTitle.fontName = { family: "REM", style: "Regular" };
+varTitle.fontSize = 300;
+varTitle.textAutoResize = "WIDTH_AND_HEIGHT";
+varTitle.characters = "VARIAÇÃO A — SPLIT PANEL";
+varTitle.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+varTitle.x = 80;
+varTitle.y = flowTitle.y + flowTitle.height + 300;
+page.appendChild(varTitle);
+
+// 4. Screen (300px abaixo do bottom do subtítulo)
+screen.x = 80;
+screen.y = varTitle.y + varTitle.height + 300;
+page.appendChild(screen);
+
+// 5. Telas adicionais do mesmo fluxo: 150px à direita da anterior
+nextScreen.x = screen.x + screen.width + 150;
+nextScreen.y = screen.y;
+page.appendChild(nextScreen);
+```
+
+> ⚠️ Com REM 300, a altura renderizada é aproximadamente 380px. Sempre leia `text.height` após definir `characters` — nunca assuma valor fixo.
 
 ### Tipografia
 - **Títulos e headings:** REM (todas as variações — Regular, Medium, SemiBold)

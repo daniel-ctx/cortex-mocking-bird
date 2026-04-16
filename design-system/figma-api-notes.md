@@ -219,13 +219,16 @@ sticky.resize(360, noteBody.y + noteBody.height + 24);
 
 ---
 
-## Título de fluxo em REM 300 — posicionamento correto
+## Hierarquia de página — título, subtítulo e screens
 
-Com REM 300px, a altura renderizada do texto é ~380px. Nunca use offset fixo.
-Sempre calcule a posição do frame a partir da altura real do título.
+Background, títulos e screens seguem uma hierarquia vertical obrigatória com gaps de 300px.
+Sempre calcule posições dinamicamente — nunca use offsets fixos.
 
 ```js
-// 1. Crie o título com textAutoResize para medir a altura real
+// ─── 1. Background da página (fazer uma vez por página) ──────────────────────
+page.backgrounds = [{ type: 'SOLID', color: { r: 0.18, g: 0.18, b: 0.18 } }]; // #2E2E2E
+
+// ─── 2. Título do tema (REM 300, branco) ─────────────────────────────────────
 await figma.loadFontAsync({ family: "REM", style: "Regular" });
 const flowTitle = figma.createText();
 flowTitle.name = "text/flow-title";
@@ -233,20 +236,35 @@ flowTitle.fontName = { family: "REM", style: "Regular" };
 flowTitle.fontSize = 300;
 flowTitle.textAutoResize = "WIDTH_AND_HEIGHT";
 flowTitle.characters = "NOME DO FLUXO";
-flowTitle.fills = [{ type: 'SOLID', color: { r: 0.18, g: 0.18, b: 0.18 } }];
-flowTitle.x = 0;
-flowTitle.y = 80;   // margem do topo da página
+flowTitle.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }]; // #fff
+flowTitle.x = 80;
+flowTitle.y = 80;
 page.appendChild(flowTitle);
 
-// 2. Leia a altura REAL renderizada (não assuma valor fixo)
-const titleActualHeight = flowTitle.height;
+// ─── 3. Subtítulo da variação (REM 300, branco, 300px abaixo do título) ──────
+const varTitle = figma.createText();
+varTitle.name = "text/variation-title";
+varTitle.fontName = { family: "REM", style: "Regular" };
+varTitle.fontSize = 300;
+varTitle.textAutoResize = "WIDTH_AND_HEIGHT";
+varTitle.characters = "VARIAÇÃO A — SPLIT PANEL";
+varTitle.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }]; // #fff
+varTitle.x = 80;
+varTitle.y = flowTitle.y + flowTitle.height + 300; // 300px abaixo do bottom do título
+page.appendChild(varTitle);
 
-// 3. Posicione o frame 80px abaixo do fim do título
-const FRAME_Y = flowTitle.y + titleActualHeight + 80;
-screen.x = 0;
-screen.y = FRAME_Y;
+// ─── 4. Screen (300px abaixo do bottom do subtítulo) ─────────────────────────
+screen.x = 80;
+screen.y = varTitle.y + varTitle.height + 300;
 page.appendChild(screen);
+
+// ─── 5. Telas adicionais do mesmo fluxo: 150px à direita ─────────────────────
+nextScreen.x = screen.x + screen.width + 150;
+nextScreen.y = screen.y;
+page.appendChild(nextScreen);
 ```
+
+> ⚠️ Com REM 300, a altura renderizada é ~380px. Sempre leia `text.height` após definir `characters` — nunca assuma valor fixo. O título do tema aparece uma única vez por página; o subtítulo aparece antes de cada variação.
 
 ---
 
