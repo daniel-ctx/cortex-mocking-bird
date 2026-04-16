@@ -88,6 +88,45 @@ O agente vai:
 6. Documentar o racional em sticky notes ao lado de cada variação
 7. Atualizar o arquivo de projeto local em `projects/`
 
+---
+
+## Protótipo HTML
+
+Use `/prototype` para gerar um HTML navegável a partir de qualquer design no Figma.
+
+```
+/prototype https://www.figma.com/design/...
+```
+
+O agente lê a estrutura do arquivo, mapeia os componentes para classes Tailwind usando os tokens
+Cortex e gera um `index.html` self-contained — sem servidor, sem build, abre direto no browser.
+
+**Output:**
+```
+prototypes/{oferta-kebab}-{descricao-kebab}-{dd-mm-aaaa}/
+  index.html
+```
+
+**Abrir localmente:**
+```bash
+open prototypes/{pasta}/index.html
+```
+
+**Gerar URL local para compartilhar:**
+```bash
+npx serve prototypes/{pasta}
+```
+
+Os arquivos de referência do design system usados pelo protótipo ficam em `design-system/`:
+
+| Arquivo | Papel |
+|---|---|
+| `html-bridge.json` | Mapeamento componente Figma → HTML+Tailwind |
+| `cortex-components.css` | Classes semânticas (`.btn-primary`, `.input-text`, etc.) |
+| `cortex-tailwind-config.js` | Tokens de cor, tipografia e espaçamento Cortex |
+
+O bridge cresce a cada protótipo gerado — componentes novos são adicionados automaticamente.
+
 ### Exemplos de prompt por oferta
 
 **Geofusion**
@@ -127,12 +166,16 @@ cortex-figma-agent/
 ├── .mcp.json                    # Configuração do servidor MCP do Figma
 ├── .env.example                 # Template de variáveis de ambiente
 ├── .env                         # Suas credenciais (nunca commitar)
-├── design-system/               # Snapshots locais do Claude System
+├── design-system/               # Snapshots locais do Claude System + tokens HTML
 │   ├── components.json          # Componentes: chave, importMethod, variantProperties
 │   ├── tokens.json              # Tokens de cor, tipografia e espaçamento
 │   ├── icons.json               # Ícones disponíveis e hints de busca
 │   ├── libraries.json           # Chaves e prioridade das bibliotecas
-│   └── figma-api-notes.md       # Gotchas da Plugin API (enums, import, fontes)
+│   ├── figma-api-notes.md       # Gotchas da Plugin API (enums, import, fontes)
+│   ├── html-bridge.json         # Mapeamento componente Figma → HTML+Tailwind
+│   ├── cortex-components.css    # Classes semânticas para protótipos HTML
+│   └── cortex-tailwind-config.js# Tokens Cortex para Tailwind CDN
+├── prototypes/                  # Protótipos HTML gerados por /prototype
 ├── projects/                    # Tracking de projetos ativos
 │   └── .active                  # Path do arquivo de projeto da sessão atual
 └── .claude/
@@ -140,7 +183,8 @@ cortex-figma-agent/
     ├── load-project.py          # Hook SessionStart: verifica requisitos + carrega projeto
     ├── protect-figma-refs.py    # Hook PreToolUse: bloqueia escrita no design system
     └── skills/
-        └── update-design-system.md
+        ├── update-design-system.md
+        └── prototype.md         # Skill /prototype → HTML navegável
 ```
 
 ---
