@@ -211,17 +211,31 @@ sticky.resize(360, 40); // altura inicial mínima — será ajustada depois
 
 page.appendChild(sticky);
 
-// Adicione os textos com textAutoResize = "HEIGHT"
+// Adicione todos os textos com textAutoResize = "HEIGHT"
+// Exemplo com título + corpo:
+const noteTitle = figma.createText();
+noteTitle.textAutoResize = "HEIGHT";
+noteTitle.resize(320, 40);
+noteTitle.x = 20;
+noteTitle.y = 20;
+sticky.appendChild(noteTitle);
+// ... defina fontName e characters do título ...
+
 const noteBody = figma.createText();
 noteBody.textAutoResize = "HEIGHT";
-noteBody.resize(320, 40); // largura fixa, altura cresce
+noteBody.resize(320, 40);
 noteBody.x = 20;
-noteBody.y = 44;
+noteBody.y = noteTitle.y + noteTitle.height + 12;
 sticky.appendChild(noteBody);
-// ... defina fontName e characters ...
+// ... defina fontName e characters do corpo ...
 
-// OBRIGATÓRIO: ajustar altura do sticky ao conteúdo real
-sticky.resize(360, noteBody.y + noteBody.height + 24);
+// OBRIGATÓRIO: ajustar altura escaneando TODOS os filhos — nunca medir só um nó
+let maxBottom = 0;
+for (const child of sticky.children) {
+  const bottom = child.y + child.height;
+  if (bottom > maxBottom) maxBottom = bottom;
+}
+sticky.resize(360, maxBottom + 24); // 24px padding inferior
 ```
 
 ---
