@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "updatedAt": "2026-04-16",
+    "note": "Library key usada para filtrar resultados do search_design_system. Atualizar com /update-design-system quando necessário."
+  },
+  "libraries": [
+    {
+      "name": "Claude System",
+      "role": "primary",
+      "priority": 1,
+      "fileId": "9zSZlgwQ9GvVB5et8VyRUj",
+      "libraryKey": "lk-6e585cf5673294ca3435ed040b053f8f8f10a7f47378069d77da9ddf16bc68a360d00f08f84e2000aa797f831cb87d794affed45934e19874b1b5664986a7f3b",
+      "note": "Biblioteca única do design system Cortex — contém componentes, ícones e tokens."
+    }
+  ]
+}

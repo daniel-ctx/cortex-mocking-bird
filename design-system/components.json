@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "updatedAt": "2026-04-16",
+    "note": "Snapshot dos componentes do Claude System. Atualizar com /update-design-system. O search_design_system retorna resultados parciais — este arquivo cobre os encontrados até agora.",
+    "primaryLibrary": "Claude System",
+    "primaryFileId": "9zSZlgwQ9GvVB5et8VyRUj",
+    "libraryKey": "lk-6e585cf5673294ca3435ed040b053f8f8f10a7f47378069d77da9ddf16bc68a360d00f08f84e2000aa797f831cb87d794affed45934e19874b1b5664986a7f3b"
+  },
+  "components": {
+    "buttons": [
+      {
+        "name": "Button",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "04ccbe877e820d6da2eb4704e02d8d50fb5cf534",
+        "importMethod": "importComponentSetByKeyAsync",
+        "variantProperties": { "Type": "Primary", "State": "Enabled" },
+        "labelNodeHint": "first TEXT child with non-empty characters",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Icon Button",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "83dd12c3897b1e38e717b8530f18847da1dfc691",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Floating Action Button",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "601b393f93e7cdaf0d78a595b2628284810b2fe2",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      }
+    ],
+    "inputs": [
+      {
+        "name": "Input Text",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "f76dac609f20065612b011b089543ad585c10ba3",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Input Select",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "6da70c0cf5f9282c1cbc79997bd354c3366552b3",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Dropdown Tags",
+        "library": "Claude System",
+        "type": "component",
+        "componentKey": "c3d1a82bb38bdee4e619d811ea37f40932267270",
+        "importMethod": "importComponentByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Checkbox",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "92189b912d65f5788e2b1393937280fa80c59e8c",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Radio Option",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "2dcc3ba8cc5005cb6cb4d6107dbbfc95644e9d42",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2025-04-03"
+      },
+      {
+        "name": "Multiselect",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "3e01d679dd4371fe3e28dc98793c6d36f2fec27b",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2025-11-13"
+      },
+      {
+        "name": "Form / Datepicker / Open Datepicker",
+        "library": "Claude System",
+        "type": "component",
+        "componentKey": "668e88bb3cfcda69b122177ee77617cb49bada50",
+        "importMethod": "importComponentByKeyAsync",
+        "updatedAt": "2024-03-21"
+      },
+      {
+        "name": "Form / Input / Slider",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "4c235595463c5e8aa2fbee7fd92d173d10915187",
+        "importMethod": "importComponentSetByKeyAsync"
+      },
+      {
+        "name": "Form / Filter / Filter Component",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "a80b3d18f8f7a37430dc6495a9f968aa96128b42",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2023-04-19"
+      }
+    ],
+    "navigation": [
+      {
+        "name": "Tab Group",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "23fa775c7e17fd1ea5ebccb8ed67297615f46bdb",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "Menu Item",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "5c336ed0d57ef0eaa84f3c61d2dd15d34df14eb4",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-04-16"
+      },
+      {
+        "name": "new-header",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "c3d14e28b13e89b49b927d1d4fe7ad5e80951bd1",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2024-02-06"
+      }
+    ],
+    "data_display": [
+      {
+        "name": "Table",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "ffe43c6eea6bfb86c06fc4860fffb962a8a25440",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2025-08-08"
+      },
+      {
+        "name": "Grid / Grid No Footer",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "2a4d64ebd9ef833adda0ab8ad515c268e7ccd40a",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2023-04-26"
+      },
+      {
+        "name": "Grid / Filter Grid",
+        "library": "Claude System",
+        "type": "component",
+        "componentKey": "2e7ac93180b23801fbabe74479d1c4c158421f2d",
+        "importMethod": "importComponentByKeyAsync",
+        "updatedAt": "2023-04-26"
+      }
+    ],
+    "feedback": [
+      {
+        "name": "Spinner",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "58dff91a785deb8b52ad4597fdeb700395300b42",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2026-01-12"
+      },
+      {
+        "name": "Skeleton",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "0554b791a45ff1a6ffd4567537e404a60b02bf76",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2025-03-09"
+      },
+      {
+        "name": "Context Modal",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "88ec44b08af3968dad626e871d91f78d50fa4efb",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2025-10-27"
+      }
+    ],
+    "overlays": [
+      {
+        "name": "Dialog",
+        "library": "Claude System",
+        "type": "component",
+        "componentKey": "c2f86c06ef3c5ef34b659259c586b102f054c643",
+        "importMethod": "importComponentByKeyAsync",
+        "updatedAt": "2025-10-29"
+      },
+      {
+        "name": "Dialog / Alert Dialog",
+        "library": "Claude System",
+        "type": "component_set",
+        "componentKey": "5f4874832f56122e2c842be888abb738aa1e60cf",
+        "importMethod": "importComponentSetByKeyAsync",
+        "updatedAt": "2023-02-14"
+      },
+      {
+        "name": "Dialog / Tokens / Modal Header",
+        "library": "Claude System",
+        "type": "component",
+        "componentKey": "1c42698f91d275b13fb297d86f331a295f9adfc3",
+        "importMethod": "importComponentByKeyAsync"
+      }
+    ]
+  }
+}

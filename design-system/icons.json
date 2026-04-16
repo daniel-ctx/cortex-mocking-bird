@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "updatedAt": "2026-04-16",
+    "note": "Snapshot de ícones encontrados. A busca retorna resultados parciais — use search_design_system para encontrar ícones específicos não listados aqui. Atualizar com /update-design-system.",
+    "primaryLibrary": "Claude System",
+    "primaryFileId": "9zSZlgwQ9GvVB5et8VyRUj",
+    "namingConvention": "Icon/{Fill|Outline}/{nome} — ex: Icon/Fill/check, Icon/Outline/arrow-right"
+  },
+  "icons": {
+    "Claude System": [
+      { "name": "Icon/Cortex",             "type": "component_set", "componentKey": "f8b52e6d689b512f1d0c906c1edc55674ed9dd21" },
+      { "name": "Icon/Fill/pantone",        "type": "component",     "componentKey": "7c3f6c8897dc71759efdd6e9e94986e43647e3b4" },
+      { "name": "Icon/Outline/button-off",  "type": "component",     "componentKey": "d254d3286b7762920cae2d097dd60021f7ad2d75" },
+      { "name": "Icon/Fill/radio-button-on","type": "component",     "componentKey": "fab3436c17d41c3a25c89e86299e67f5277bd6a5" },
+      { "name": "bread",                    "type": "component",     "componentKey": "f9d70c221bb2da9c13a2da9f37e3882dcf06e3ee" },
+      { "name": "table",                    "type": "component",     "componentKey": "5a6b0a3e85df514e4fc7dda06acf3491d6089775" },
+      { "name": "space",                    "type": "component",     "componentKey": "25d7bde27ed2a2922ed39bab6cde60d7f351a10d" },
+      { "name": "select",                   "type": "component",     "componentKey": "6dfb8358682fa9ded699823565442b19d271828b" },
+      { "name": "toggle-right",             "type": "component",     "componentKey": "8e705751d181e3899fd57ce18e1025ea5bb7a49e" },
+      { "name": "map-search",               "type": "component",     "componentKey": "e525e5f10c8f1e18207907103d3d974a8be6f1cd" },
+      { "name": "map-pin",                  "type": "component",     "componentKey": "e3321dd575413922d2dc80c5a5844dabc0ec3425" },
+      { "name": "row-insert-bottom",        "type": "component",     "componentKey": "2490506b5a56814c3eedadb83d777de583ea0158" },
+      { "name": "Icon/Outline/bell",        "type": "component",     "componentKey": "5b31299af03a30fbf58b76080f8d9a6795442996" },
+      { "name": "container",                "type": "component",     "componentKey": "c2c82c08804491af1375773bae26736585d1a137" }
+    ]
+  },
+  "searchHints": {
+    "note": "Para encontrar ícones não listados, use search_design_system com o nome do ícone como query e fileKey 9zSZlgwQ9GvVB5et8VyRUj. Exemplos de buscas úteis:",
+    "examples": [
+      "arrow chevron",
+      "check close",
+      "user profile account",
+      "settings gear config",
+      "filter sort",
+      "download upload",
+      "edit pencil",
+      "delete trash",
+      "add plus",
+      "location pin marker",
+      "chart graph",
+      "calendar date",
+      "search magnifier",
+      "warning alert info",
+      "home dashboard"
+    ]
+  }
+}

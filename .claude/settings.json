@@ -1,0 +1,62 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__*",
+      "Bash(git:*)",
+      "Bash(bash:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(python3:*)",
+      "Bash(cp:*)",
+      "Bash(sed:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(chmod:*)",
+      "Bash(source:*)",
+      "Bash(export:*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PWD/.claude/load-project.py\"",
+            "timeout": 10,
+            "statusMessage": "Carregando projeto ativo..."
+          }
+        ]
+      }
+    ],
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"decision\": \"block\", \"reason\": \"Worktrees desabilitados neste projeto. Todas as alterações acontecem diretamente na branch main.\"}'",
+            "timeout": 5,
+            "statusMessage": "Bloqueando criação de worktree..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__use_figma|mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__create_design_system_rules|mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__add_code_connect_map|mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__send_code_connect_mappings|mcp__8efe0c63-6598-4bf3-8fda-6c07c4a85f10__generate_diagram",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PWD/.claude/protect-figma-refs.py\"",
+            "timeout": 10,
+            "statusMessage": "Verificando proteção de arquivos de referência..."
+          }
+        ]
+      }
+    ]
+  }
+}
